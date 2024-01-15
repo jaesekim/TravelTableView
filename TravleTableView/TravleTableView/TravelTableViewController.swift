@@ -55,13 +55,16 @@ class TravelTableViewController: UITableViewController {
         
         let imgUrl = URL(string: magazine[indexPath.row].photo_image)
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyMMdd"
+        
+        let dateFormatter = makeDateFormatter(shape: "yyMMdd")
+        
+        
         let convertedDate = dateFormatter.date(from: magazine[indexPath.row].date)
         
-        let myDateFormatter = DateFormatter()
-        myDateFormatter.dateFormat = "yy년 MM월 dd일"
-    
+        let myDateFormatter = makeDateFormatter(shape: "yy년 MM월 dd일")
+        
+        
+        
         navigationItem.title = "Sesac Travel"
         
         cell.travelImageView.kf.setImage(with: imgUrl)
@@ -87,4 +90,14 @@ class TravelTableViewController: UITableViewController {
         return 500
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        
+        vc.urlString = magazine[indexPath.row].link
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
+

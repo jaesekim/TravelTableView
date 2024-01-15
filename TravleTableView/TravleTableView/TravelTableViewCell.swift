@@ -14,4 +14,8 @@ class TravelTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var contentLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
+    
+    override class func awakeFromNib() {
+        
+    }
 }
